@@ -11,7 +11,7 @@ const {
   createWanted,
   updateWanted,
   deleteWanted,
-} = require("../services/user_services");
+} = require("../services/wanted_service");
 const {
   getSuspects,
   getSuspectById,
