@@ -21,6 +21,10 @@ const harassment = sequelize.define('harassment',{
             key: 'id',
         }
     },
+    status : {
+        type : DataTypes.INTEGER,
+        allowNull :false
+    }
 },
 {
   timestamps: false
