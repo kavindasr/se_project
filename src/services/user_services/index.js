@@ -1,17 +1,16 @@
-const sequelize = require('../../helpers/sequelizer');
+const sequelize = require("../../helpers/sequelizer");
 
-const getUser =async (req,res,next)=>{
-    const user = sequelize.models.user;
-    const id = req.params.id;
-    const arr =await user.findAll(
-        {
-            where : {
-                id : id
-            }
-        }
-    )
-    req.arr = arr;
-    next();
+const getUsers = async (req, res, next) => {
+  // sequalize logic goes here
+  next();
+};
+const getUserById = async (req, res, next) => {
+  // sequalize logic goes here
+  next();
+};
+const createUser = async (req, res, next) => {
+  // sequalize logic goes here
+  next();
 };
 
-module.exports = {getUser}
+module.exports = { getUsers, getUserById, createUser };

@@ -1,17 +1,30 @@
-const sequelize = require('../../helpers/sequelizer');
+const sequelize = require("../../helpers/sequelizer");
 
-const getUser =async (req,res,next)=>{
-    const user = sequelize.models.user;
-    const id = req.params.id;
-    const arr =await user.findAll(
-        {
-            where : {
-                id : id
-            }
-        }
-    )
-    req.arr = arr;
-    next();
+const getWanteds = async (req, res, next) => {
+  //  sequalize logic here
+  next();
+};
+const getWantedById = async (req, res, next) => {
+  //  sequalize logic here
+  next();
+};
+const createWanted = async (req, res, next) => {
+  //  sequalize logic here
+  next();
+};
+const updateWanted = async (req, res, next) => {
+  //  sequalize logic here
+  next();
+};
+const deleteWanted = async (req, res, next) => {
+  //  sequalize logic here
+  next();
 };
 
-module.exports = {getUser}
+module.exports = {
+  getWanteds,
+  getWantedById,
+  createWanted,
+  updateWanted,
+  deleteWanted,
+};
