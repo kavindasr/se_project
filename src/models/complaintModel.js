@@ -10,32 +10,28 @@ const complaint = sequelize.define(
       primaryKey: true,
     },
     nic: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     full_name: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     mobile: {
       type: DataTypes.INTEGER,
     },
     address: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
     },
     complaint: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     file: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
     },
     people: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "people",
-        key: "id",
-      },
+      type: DataTypes.INTEGER
     },
     status: {
       type: DataTypes.INTEGER,
@@ -47,13 +43,7 @@ const complaint = sequelize.define(
   }
 );
 
-complaint.belongsToOne(models.people, {
-  through: {
-    model: models.people,
-    unique: true,
-  },
-  foreignKey: "people",
-});
 
-// complaint.sync({force:true}) // DANGEROUS!!! must remove at production
+
+complaint.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = complaint;

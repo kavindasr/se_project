@@ -10,18 +10,14 @@ const harassment = sequelize.define(
       primaryKey: true,
     },
     description: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     created_on: {
       type: DataTypes.DATE,
     },
     people: {
-      type: DataTypes.INTEGER,
-      references: {
-        model: "people",
-        key: "id",
-      },
+      type: DataTypes.INTEGER
     },
     status: {
       type: DataTypes.INTEGER,
@@ -33,13 +29,6 @@ const harassment = sequelize.define(
   }
 );
 
-harassment.belongsToOne(models.people, {
-  through: {
-    model: models.people,
-    unique: true,
-  },
-  foreignKey: "people",
-});
 
-// harassment.sync({force:true}) // DANGEROUS!!! must remove at production
+harassment.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = harassment;

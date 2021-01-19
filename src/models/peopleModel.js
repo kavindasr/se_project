@@ -1,8 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
 const complaint = require("./complaintModel");
-
-const user = require("./userModel");
+const harassment = require("./harassmentModel");
 
 const people = sequelize.define(
   "people",
@@ -10,14 +9,10 @@ const people = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      autoIncrement: true,
-      references: {
-        model: "user",
-        key: "id",
-      },
+      primaryKey: true,
     },
     address: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.TEXT,
     },
   },
   {
@@ -25,13 +20,18 @@ const people = sequelize.define(
   }
 );
 
-people.belongsToOne(models.user, {
-  through: {
-    model: models.user,
-    unique: true,
-  },
-  foreignKey: "id",
-});
 
-// people.sync({force:true}) // DANGEROUS!!! must remove at production
+people.hasMany(complaint, {
+  foreignKey: 'people',
+  onDelete: 'CASCADE'
+});
+complaint.belongsTo(people);
+
+people.hasMany(harassment, {
+  foreignKey: 'people',
+  onDelete: 'CASCADE'
+});
+harassment.belongsTo(people);
+
+people.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = people;

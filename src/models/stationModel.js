@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
+const police = require("./policeModel");
 
 const station = sequelize.define(
   "station",
@@ -10,11 +11,11 @@ const station = sequelize.define(
       primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     address: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.TEXT,
       allowNull: false,
     },
   },
@@ -23,5 +24,11 @@ const station = sequelize.define(
   }
 );
 
-// station.sync({force:true}) // DANGEROUS!!! must remove at production
+station.belongsTo(police, {
+  foreignKey: 'station',
+  onDelete: 'CASCADE'
+});
+police.belongsTo(station);
+
+station.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = station;

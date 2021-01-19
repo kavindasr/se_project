@@ -1,6 +1,9 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
-const complaint = require("./complaintModel");
+const police = require("./policeModel");
+const lawyer = require("./lawyerModel");
+const people = require("./peopleModel");
+
 
 const user = sequelize.define(
   "user",
@@ -8,28 +11,28 @@ const user = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-    },
-    nic: {
-      type: DataTypes.STRING(100),
-      allowNull: false,
       primaryKey: true,
     },
+    nic: {
+      type: DataTypes.STRING,
+      allowNull: false,  
+    },
     first_name: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     last_name: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
     },
     email: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
     },
     password: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     mobile: {
-      type: DataTypes.STRING(10),
+      type: DataTypes.STRING,
     },
     created_on: {
       type: DataTypes.DATE,
@@ -48,5 +51,23 @@ const user = sequelize.define(
   }
 );
 
-// user.sync({force:true}) // DANGEROUS!!! must remove at production
+user.hasMany(police, {
+  foreignKey: 'id',
+  onDelete: 'CASCADE'
+});
+police.belongsTo(user);
+
+user.hasMany(lawyer, {
+  foreignKey: 'id',
+  onDelete: 'CASCADE'
+});
+lawyer.belongsTo(user);
+
+user.hasMany(people, {
+  foreignKey: 'id',
+  onDelete: 'CASCADE'
+});
+people.belongsTo(user);
+
+user.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = user;

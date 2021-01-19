@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
+const law = require("./lawModel");
 
 const lawyer = sequelize.define(
   "lawyer",
@@ -7,14 +8,10 @@ const lawyer = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "user",
-        key: "id",
-      },
       primaryKey: true,
     },
     designation: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
       allowNull: false,
     },
   },
@@ -23,13 +20,11 @@ const lawyer = sequelize.define(
   }
 );
 
-lawyer.belongsToOne(models.user, {
-  through: {
-    model: models.user,
-    unique: true,
-  },
-  foreignKey: "id",
+lawyer.hasMany(law, {
+  foreignKey: 'lawyer',
+  onDelete: 'CASCADE'
 });
+law.belongsTo(lawyer);
 
-// lawyer.sync({force:true}) // DANGEROUS!!! must remove at production
+lawyer.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = lawyer;

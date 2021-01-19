@@ -1,5 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
+const suspect = require("./suspectModel");
+const wanted = require("./wantedModel");
 
 const police = sequelize.define(
   "police",
@@ -7,23 +9,15 @@ const police = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "user",
-        key: "id",
-      },
       primaryKey: true,
     },
     designation: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     station: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "station",
-        key: "id",
-      },
     },
   },
   {
@@ -31,21 +25,19 @@ const police = sequelize.define(
   }
 );
 
-police.belongsToOne(models.user, {
-  through: {
-    model: models.user,
-    unique: true,
-  },
-  foreignKey: "id",
+police.hasMany(suspect, {
+  foreignKey: 'police',
+  onDelete: 'CASCADE'
 });
+suspect.belongsTo(police);
 
-police.belongsToOne(models.station, {
-  through: {
-    model: models.station,
-    unique: true,
-  },
-  foreignKey: "station",
+police.hasMany(wanted, {
+  foreignKey: 'police',
+  onDelete: 'CASCADE'
 });
+wanted.belongsTo(police);
 
-// police.sync({force:true}) // DANGEROUS!!! must remove at production
+
+
+police.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = police;

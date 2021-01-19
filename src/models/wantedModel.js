@@ -10,26 +10,22 @@ const wanted = sequelize.define(
       primaryKey: true,
     },
     first_name: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     last_name: {
-      type: DataTypes.STRING(200),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     description: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
     },
     image: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
     },
     police: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: {
-        model: "police",
-        key: "id",
-      },
     },
     status: {
       type: DataTypes.INTEGER,
@@ -40,13 +36,6 @@ const wanted = sequelize.define(
   }
 );
 
-wanted.belongsToMany(models.police, {
-  through: {
-    model: models.police,
-    unique: false,
-  },
-  foreignKey: "police",
-});
 
-// wanted.sync({force:true}) // DANGEROUS!!! must remove at production
+wanted.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = wanted;

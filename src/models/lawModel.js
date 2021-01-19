@@ -10,20 +10,16 @@ const law = sequelize.define(
       primaryKey: true,
     },
     number: {
-      type: DataTypes.STRING(100),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     law: {
-      type: DataTypes.STRING(500),
+      type: DataTypes.STRING,
       allowNull: false,
     },
     lawyer: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      references: {
-        model: "lawyer",
-        key: "id",
-      },
+      allowNull: false
     },
   },
   {
@@ -31,13 +27,6 @@ const law = sequelize.define(
   }
 );
 
-law.belongsToOne(models.lawyer, {
-  through: {
-    model: models.lawyer,
-    unique: true,
-  },
-  foreignKey: "lawyer",
-});
 
-// law.sync({force:true}) // DANGEROUS!!! must remove at production
+law.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = law;
