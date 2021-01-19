@@ -2,6 +2,9 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+
+const session = require('express-session');
+
 /**
  * All the express middlewares used in here
  * 
@@ -13,6 +16,8 @@ const expressLoader = async ({app})=>{
     app.use(cookieParser());
     app.use(bodyParser.json()) // for parsing application/json
     app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+    app.use(session({ secret:"SE Project",
+    resave:false,saveUninitialized:false }))
 
     return app;
 }

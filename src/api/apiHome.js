@@ -1,16 +1,26 @@
 const router = require("express").Router();
 const { getSuspects, getSuspectById } = require("../services/suspect_service");
-const { login } = require("../services/authService");
+const  auth  = require("../services/authService");
 const {
+  
   getArticles,
   getLaws,
   getLawById,
   getEmergency,
 } = require("../services/law_service");
+const register = require("../services/user_services");
 
-router.post("/login", login, (req, res, next) => {
-  res.send(req.arr);
+router.post("/login", auth.login,(req, res, next) => {
+  //res.send(req.arr);
+  next();
 });
+
+router.post("/register",register.createUser, (req, res, next) => {
+  //res.send(req.arr);
+  next();
+});
+
+
 router.get("/", getArticles, (req, res, next) => {
   res.send(req.arr);
 });

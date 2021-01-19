@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
+const bcrypt = require('bcrypt');
 
 const user = sequelize.define(
   "users",
@@ -46,6 +47,12 @@ const user = sequelize.define(
     timestamps: false,
   }
 );
+
+user.findAndValidate = async function (email, password) {
+  const foundUser = await this.findAll({where: {email:email }});
+  const isValid = await bcrypt.compare(password, foundUser.password);
+  return isValid ? foundUser : false;
+}
 
 
 //user.sync({force:true}) // DANGEROUS!!! must remove at production
