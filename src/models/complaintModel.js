@@ -46,5 +46,5 @@ const complaint = sequelize.define(
 
 
 
-complaint.sync({force:true}) // DANGEROUS!!! must remove at production
+//complaint.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = complaint;

@@ -36,5 +36,5 @@ const wanted = sequelize.define(
 );
 
 
-wanted.sync({force:true}) // DANGEROUS!!! must remove at production
+//wanted.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = wanted;

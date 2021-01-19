@@ -24,5 +24,5 @@ const police = sequelize.define(
 
 
 
-police.sync({force:true}) // DANGEROUS!!! must remove at production
+//police.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = police;

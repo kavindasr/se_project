@@ -21,5 +21,5 @@ const lawyer = sequelize.define(
 
 
 
-lawyer.sync({ force: true }); // DANGEROUS!!! must remove at production
+//lawyer.sync({ force: true }); // DANGEROUS!!! must remove at production
 module.exports = lawyer;

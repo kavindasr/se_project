@@ -21,5 +21,5 @@ const people = sequelize.define(
 
 
 
-people.sync({force:true}) // DANGEROUS!!! must remove at production
+//people.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = people;

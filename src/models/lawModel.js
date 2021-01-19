@@ -26,5 +26,5 @@ const law = sequelize.define(
   }
 );
 
-law.sync({ force: true }); // DANGEROUS!!! must remove at production
+//law.sync({ force: true }); // DANGEROUS!!! must remove at production
 module.exports = law;

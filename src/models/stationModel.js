@@ -25,5 +25,5 @@ const station = sequelize.define(
 
 
 
-station.sync({force:true}) // DANGEROUS!!! must remove at production
+//station.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = station;

@@ -48,5 +48,5 @@ const user = sequelize.define(
 );
 
 
-user.sync({force:true}) // DANGEROUS!!! must remove at production
+//user.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = user;

@@ -30,5 +30,5 @@ const harassment = sequelize.define(
 );
 
 
-harassment.sync({force:true}) // DANGEROUS!!! must remove at production
+//harassment.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = harassment;

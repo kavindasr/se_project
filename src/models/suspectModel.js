@@ -36,5 +36,5 @@ const suspect = sequelize.define(
 );
 
 
-suspect.sync({force:true}) // DANGEROUS!!! must remove at production
+//suspect.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = suspect;
