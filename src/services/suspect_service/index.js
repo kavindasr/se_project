@@ -1,4 +1,5 @@
 const sequelize = require("../../helpers/sequelizer");
+const suspect = require("../../models/suspectModel");
 
 const getSuspects = async (req, res, next) => {
   // sequalize logic here

@@ -1,4 +1,5 @@
 const sequelize = require("../../helpers/sequelizer");
+const complaint = require("../../models/lawModel");
 
 const getArticles = async (req, res, next) => {
   // logic to get all articles

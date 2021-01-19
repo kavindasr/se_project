@@ -1,5 +1,5 @@
 const sequelize = require("../../helpers/sequelizer");
-const complaint =require("../models/complaintModel");
+const complaint = require("../../models/complaintModel");
 const getComplaints = async (req, res, next) => {
   // logic for getting all complaints
   const complaints = await complaint.findAll();

@@ -1,4 +1,5 @@
 const sequelize = require("../../helpers/sequelizer");
+const user = require("../../models/userModel");
 
 const getUsers = async (req, res, next) => {
 
