@@ -20,7 +20,7 @@ const createUser = async (req, res, next) => {
   // sequalize logic goes here
   const id = req.body.id,
   nic = req.body.nic,
-  f_n = req.body.full_name,
+  f_n = req.body.first_name,
   l_n= req.body.last_name,
   email=req.body.email,
   password=req.body.password,

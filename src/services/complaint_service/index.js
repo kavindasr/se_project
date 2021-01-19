@@ -24,6 +24,7 @@ const createComplaint = async (req, res, next) => {
   f_n = req.body.full_name,
   mob=req.body.mobile,
   add = req.body.address,
+  file=req.body.file,
   comp=req.body.complaint,
   people=req.user.id;
      
@@ -34,7 +35,8 @@ const createComplaint = async (req, res, next) => {
   mobile:mob,
   address:add,
   complaint:comp,
-  people:people,
+  file:file,
+  people_id:people,
   created_on:Date.now(),
   status:0
   });
@@ -43,7 +45,7 @@ const createComplaint = async (req, res, next) => {
 };
 const updateComplaint = async (req, res, next) => {
   // update complaint logic
- const updatedComplaint= await complaint.update({ nic:req.body.nic,fullname:req.body.fullname,mobile:req.body.mobile,address:req.body.address,complaint:req.body.compalint }, {
+ const updatedComplaint= await complaint.update({ nic:req.body.nic,fullname:req.body.fullname,mobile:req.body.mobile,address:req.body.address,complaint:req.body.compalint ,file:req.body.file}, {
     where: {
       id: req.params.id
     }

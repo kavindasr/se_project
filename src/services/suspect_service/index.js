@@ -34,7 +34,7 @@ const newSuspect = await suspect.create({id:id,
   last_name:ln,
   description:desc,
   image:img,
-  police:police,
+  police_id:police,
   status:0
   
   

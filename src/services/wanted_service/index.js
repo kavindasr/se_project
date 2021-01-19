@@ -32,7 +32,7 @@ const createWanted = async (req, res, next) => {
   last_name:l_n,
   description:desc,
   image:img,
-  police:police,
+  police_id:police,
   status:0
   });
   
