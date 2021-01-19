@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
 
 const suspect = sequelize.define(
-  "suspect",
+  "suspects",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -23,11 +23,10 @@ const suspect = sequelize.define(
     image: {
       type: DataTypes.STRING,
     },
-    police: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
     status: {
+      type: DataTypes.INTEGER,
+    },
+    police_id: {
       type: DataTypes.INTEGER,
     },
   },

@@ -1,10 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
-const suspect = require("./suspectModel");
-const wanted = require("./wantedModel");
 
 const police = sequelize.define(
-  "police",
+  "polices",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,27 +13,14 @@ const police = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    station: {
+    station_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
   },
   {
     timestamps: false,
   }
 );
-
-police.hasMany(suspect, {
-  foreignKey: 'police',
-  onDelete: 'CASCADE'
-});
-suspect.belongsTo(police);
-
-police.hasMany(wanted, {
-  foreignKey: 'police',
-  onDelete: 'CASCADE'
-});
-wanted.belongsTo(police);
 
 
 

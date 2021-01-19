@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
 
 const harassment = sequelize.define(
-  "harassment",
+  "harassments",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,12 +16,12 @@ const harassment = sequelize.define(
     created_on: {
       type: DataTypes.DATE,
     },
-    people: {
-      type: DataTypes.INTEGER
-    },
     status: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    people_id: {
+      type: DataTypes.INTEGER,
     },
   },
   {

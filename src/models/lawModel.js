@@ -2,24 +2,23 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
 
 const law = sequelize.define(
-  "law",
+  "laws",
   {
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
-    number: {
+    law_number: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    law: {
+    law_notes: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     lawyer_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
     },
   },
   {

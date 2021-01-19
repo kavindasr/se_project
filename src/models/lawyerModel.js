@@ -1,9 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
-const law = require("./lawModel");
 
 const lawyer = sequelize.define(
-  "lawyer",
+  "lawyers",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -20,11 +19,7 @@ const lawyer = sequelize.define(
   }
 );
 
-lawyer.hasMany(law, {
-  foreignKey: "lawyer_id",
-  onDelete: "CASCADE",
-});
-law.belongsTo(lawyer);
+
 
 lawyer.sync({ force: true }); // DANGEROUS!!! must remove at production
 module.exports = lawyer;

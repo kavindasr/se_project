@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
 
 const complaint = sequelize.define(
-  "complaint",
+  "complaints",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -30,10 +30,11 @@ const complaint = sequelize.define(
     file: {
       type: DataTypes.STRING,
     },
-    people: {
-      type: DataTypes.INTEGER
-    },
     status: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    people_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
     },

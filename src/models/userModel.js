@@ -1,12 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
-const police = require("./policeModel");
-const lawyer = require("./lawyerModel");
-const people = require("./peopleModel");
-
 
 const user = sequelize.define(
-  "user",
+  "users",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -51,23 +47,6 @@ const user = sequelize.define(
   }
 );
 
-user.hasMany(police, {
-  foreignKey: 'id',
-  onDelete: 'CASCADE'
-});
-police.belongsTo(user);
-
-user.hasMany(lawyer, {
-  foreignKey: 'id',
-  onDelete: 'CASCADE'
-});
-lawyer.belongsTo(user);
-
-user.hasMany(people, {
-  foreignKey: 'id',
-  onDelete: 'CASCADE'
-});
-people.belongsTo(user);
 
 user.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = user;
