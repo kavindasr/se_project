@@ -8,17 +8,17 @@ const {
   getLawById,
   getEmergency,
 } = require("../services/law_service");
-const register = require("../services/user_services");
+//const register = require("../services/user_services");
 
 router.post("/login", auth.login,(req, res, next) => {
   //res.send(req.arr);
   next();
 });
 
-router.post("/register",register.createUser, (req, res, next) => {
+/*router.post("/register",register.createUser, (req, res, next) => {
   //res.send(req.arr);
   next();
-});
+}); */
 
 
 router.get("/", getArticles, (req, res, next) => {
