@@ -1,30 +1,46 @@
 const sequelize = require("../../helpers/sequelizer");
 
-const getWanteds = async (req, res, next) => {
-  //  sequalize logic here
+const getUsers = async (req, res, next) => {
+
+  // sequalize logic goes here
+  const users = await user.findAll();
   next();
 };
-const getWantedById = async (req, res, next) => {
-  //  sequalize logic here
+const getUserById = async (req, res, next) => {
+  // sequalize logic goes here
+  const userId = await user.findAll({
+    where: {
+      id: req.params.id
+    }
+  });
   next();
 };
-const createWanted = async (req, res, next) => {
-  //  sequalize logic here
-  next();
-};
-const updateWanted = async (req, res, next) => {
-  //  sequalize logic here
-  next();
-};
-const deleteWanted = async (req, res, next) => {
-  //  sequalize logic here
+const createUser = async (req, res, next) => {
+  // sequalize logic goes here
+  const id = req.body.id,
+  nic = req.body.nic,
+  f_n = req.body.full_name,
+  l_n= req.body.last_name,
+  email=req.body.email,
+  password=req.body.password,
+  mob=req.body.mobile,
+  level=req.body.level;
+     
+  // Create a new User and save to DB 
+const newUser = await user.create({id:id,
+  nic:nic,
+  fullname:f_n,
+  last_name:l_n,
+  email:email,
+  password:password,
+  mobile:mob,
+  level:level,
+  created_on:Date.now(),
+  status:0
+
+
+});
   next();
 };
 
-module.exports = {
-  getWanteds,
-  getWantedById,
-  createWanted,
-  updateWanted,
-  deleteWanted,
-};
+module.exports = { getUsers, getUserById, createUser };
