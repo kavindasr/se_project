@@ -17,9 +17,9 @@ const law = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    lawyer: {
+    lawyer_id: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
   },
   {
@@ -27,6 +27,5 @@ const law = sequelize.define(
   }
 );
 
-
-law.sync({force:true}) // DANGEROUS!!! must remove at production
+law.sync({ force: true }); // DANGEROUS!!! must remove at production
 module.exports = law;

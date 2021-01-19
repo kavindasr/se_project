@@ -21,10 +21,10 @@ const lawyer = sequelize.define(
 );
 
 lawyer.hasMany(law, {
-  foreignKey: 'lawyer',
-  onDelete: 'CASCADE'
+  foreignKey: "lawyer_id",
+  onDelete: "CASCADE",
 });
 law.belongsTo(lawyer);
 
-lawyer.sync({force:true}) // DANGEROUS!!! must remove at production
+lawyer.sync({ force: true }); // DANGEROUS!!! must remove at production
 module.exports = lawyer;
