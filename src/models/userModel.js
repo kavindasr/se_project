@@ -8,6 +8,7 @@ const user = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      autoIncrement:true,
       primaryKey: true,
     },
     nic: {
@@ -48,11 +49,22 @@ const user = sequelize.define(
   }
 );
 
-user.findAndValidate = async function (email, password) {
+user.prototype.findAndValidate = async function (email, password) {
   const foundUser = await this.findAll({where: {email:email }});
   const isValid = await bcrypt.compare(password, foundUser.password);
   return isValid ? foundUser : false;
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 //user.sync({force:true}) // DANGEROUS!!! must remove at production

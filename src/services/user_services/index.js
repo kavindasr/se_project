@@ -5,7 +5,9 @@ const getUsers = async (req, res, next) => {
 
   // sequalize logic goes here
   const users = await user.findAll();
+  req.users=users;
   next();
+  
 };
 const getUserById = async (req, res, next) => {
   // sequalize logic goes here
@@ -14,6 +16,7 @@ const getUserById = async (req, res, next) => {
       id: req.params.id
     }
   });
+  res.locals.userId=userId;
   next();
 };
 const createUser = async (req, res, next) => {
@@ -27,7 +30,7 @@ const createUser = async (req, res, next) => {
   mob=req.body.mobile,
   level=req.body.level;
      
-  // Create a new complaint and save to DB 
+  // Create a new user and save to DB 
 const newUser = await user.create({id:id,
   nic:nic,
   fullname:f_n,
@@ -40,7 +43,7 @@ const newUser = await user.create({id:id,
   status:0
 
 
-});
+})
   next();
 };
 
