@@ -2,6 +2,7 @@
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
+const passport=require("passport");
 
 const session = require('express-session');
 
@@ -18,7 +19,9 @@ const expressLoader = async ({app})=>{
     app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
     app.use(session({ secret:"SE Project",
     resave:false,saveUninitialized:false }))
+    
 
+    
     return app;
 }
 

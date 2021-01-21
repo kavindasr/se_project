@@ -23,6 +23,10 @@ class ApiError{
     static notfound(){
         return new ApiError(404, 'Not found');
     }
+    static noContent(){
+        return new ApiError(204, 'No Content');
+    }
+
     //Add more error status codes according to the requirement
 }
 

@@ -1,6 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
+const passportLocalSequelize=require("passport-local-sequelize");
 const bcrypt = require('bcrypt');
+const { Sequelize } = require("../helpers/sequelizer");
 
 const user = sequelize.define(
   "users",
@@ -48,14 +50,6 @@ const user = sequelize.define(
     timestamps: false,
   }
 );
-
-user.prototype.findAndValidate = async function (email, password) {
-  const foundUser = await this.findAll({where: {email:email }});
-  const isValid = await bcrypt.compare(password, foundUser.password);
-  return isValid ? foundUser : false;
-}
-
-
 
 
 
