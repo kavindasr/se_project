@@ -18,16 +18,16 @@ router.post("/login", auth.login);
 
 
 router.post('/register', async(req, res) => {
-  console.log("Trying to sign up");
+  
   const { email,password } = req.body;
   
   if ( !email || !password ) {
-    res.send("Please enter all fields");
+    res.json({message:"Please enter all fields"});
   }
   
 
   if (password.length < 6) {
-     res.send('Password must be at least 6 characters');
+     res.json({message:'Password must be at least 6 characters'});
   }
 
  
@@ -96,17 +96,17 @@ router.get("/", getArticles, (req, res, next) => {
 });
 
 router.get("/laws", getLaws, (req, res, next) => {
-  res.send(req.arr);
+  res.json({AllLaws:laws});
 });
 router.get("/laws/:id", getLawById, (req, res, next) => {
-  res.send(req.arr);
+  res.json({lawById:lawId});
 });
 
 router.get("/suspects", getSuspects, (req, res, next) => {
-  res.send(req.arr);
+ res.json({Allsuspects:suspects});
 });
 router.get("/suspects/:id", getSuspectById, (req, res, next) => {
-  res.send(req.arr);
+  res.json({suspectById:suspectId});
 });
 
 router.get("/emergency", getEmergency, (req, res, next) => {

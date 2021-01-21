@@ -1,4 +1,5 @@
 const sequelize = require("../../helpers/sequelizer");
+const ApiError =require('../../helpers/APIerror');
 const bcrypt=require("bcrypt");
 
 const user = require("../../models/userModel");

@@ -1,65 +1,94 @@
 const sequelize = require("../../helpers/sequelizer");
 const complaint = require("../../models/complaintModel");
+const ApiError =require('../../helpers/APIerror');
 const getComplaints = async (req, res, next) => {
   // logic for getting all complaints
-  const complaints = await complaint.findAll();
+  try{
+    const complaints = await complaint.findAll();
+    req.complaints=complaints;
+    next();
+  }catch(e){
+    next(ApiError.badrequest());
+  }
+  
   
 
-  next();
+  
 };
 const getComplaintById = async (req, res, next) => {
   // logic for getting a complaint by id
-  const complaintId = await complaint.findAll({
-    where: {
-      id: req.params.id
-    }
-  });
+  try{
+    const complaintId = await complaint.findAll({
+      where: {
+        id: req.params.id
+      }
+    });
+    req.complaint=IcomplaintId;
+    next();
+  }catch(e){
+    next(ApiError.badrequest());
+  }
   
-  next();
 };
 const createComplaint = async (req, res, next) => {
   // create new complaint
-  const id = req.body.id,
-  nic = req.body.nic,
-  f_n = req.body.full_name,
-  mob=req.body.mobile,
-  add = req.body.address,
-  file=req.body.file,
-  comp=req.body.complaint,
-  people=req.user.id;
-     
-  // Create a new complaint and save to DB 
-  const newComplaint = await complaint.create({id:id,
-  nic:nic,
-  fullname:f_n,
-  mobile:mob,
-  address:add,
-  complaint:comp,
-  file:file,
-  people_id:people,
-  created_on:Date.now(),
-  status:0
-  });
-  next();
+  try{const id = req.body.id,
+    nic = req.body.nic,
+    f_n = req.body.full_name,
+    mob=req.body.mobile,
+    add = req.body.address,
+    file=req.body.file,
+    comp=req.body.complaint,
+    people=req.user.id;
+       
+    // Create a new complaint and save to DB 
+    const newComplaint = await complaint.create({id:id,
+    nic:nic,
+    fullname:f_n,
+    mobile:mob,
+    address:add,
+    complaint:comp,
+    file:file,
+    people_id:people,
+    created_on:Date.now(),
+    status:0
+    });
+    req.newComplaint=newComplaint;
+    next();
+    }catch(e){
+      next(ApiError.badrequest());
+    }
   
 };
 const updateComplaint = async (req, res, next) => {
   // update complaint logic
- const updatedComplaint= await complaint.update({ nic:req.body.nic,fullname:req.body.fullname,mobile:req.body.mobile,address:req.body.address,complaint:req.body.compalint ,file:req.body.file}, {
-    where: {
-      id: req.params.id
-    }
-  });
-  next();
+  try{
+    const updatedComplaint= await complaint.update({ nic:req.body.nic,fullname:req.body.fullname,mobile:req.body.mobile,address:req.body.address,complaint:req.body.compalint ,file:req.body.file}, {
+      where: {
+        id: req.params.id
+      }
+    });
+    req.updatedComplaints=updatedComplaints;
+    next();
+  
+  }catch(e){
+    next(ApiError.badrequest())
+  }
 };
+ 
 const deleteComplaint = async (req, res, next) => {
   // delete complaint logic
-  await complaint.destroy({
-    where: {
-      id: req.params.id
-    }
-  });
-  next();
+  try{
+    await complaint.destroy({
+      where: {
+        id: req.params.id
+      }
+    });
+    next();
+  }catch(e){
+    next(e);
+  }
+  
 };
 
 module.exports = {
