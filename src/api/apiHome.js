@@ -33,7 +33,7 @@ router.post('/register', (req, res) => {
  
   else {
     user.findAll({where:{ email: email }}).then(e => {
-      if (e ==[]) {
+      if (user) {
         console.log(e);
         
         res.status(400).json({
@@ -50,10 +50,10 @@ router.post('/register', (req, res) => {
               password=req.body.password,
               mob=req.body.mobile,
               level=req.body.level,
-              id=req.body.id;
+              
      
   // Create a new user and save to DB 
-        const newUser =user.build({id:id,
+        const newUser =user.build({,
           nic:nic,
           first_name:f_n,
           last_name:l_n,
