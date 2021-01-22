@@ -1,5 +1,5 @@
 const sequelize = require("../../helpers/sequelizer");
-const ApiError =require('../../helpers/APIerror');
+const ApiError =require('../../helpers/ApiError');
 const law = require("../../models/lawModel");
 
 const getArticles = async (req, res, next) => {

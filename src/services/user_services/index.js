@@ -1,5 +1,5 @@
 const sequelize = require("../../helpers/sequelizer");
-const ApiError =require('../../helpers/APIerror');
+const ApiError =require('../../helpers/ApiError');
 const getUsers = async (req, res, next) => {
   const user = sequelize.models.users;
   // sequalize logic goes here

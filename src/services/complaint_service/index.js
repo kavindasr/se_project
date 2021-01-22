@@ -1,6 +1,6 @@
 const sequelize = require("../../helpers/sequelizer");
 const complaint = require("../../models/complaintModel");
-const ApiError =require('../../helpers/APIerror');
+const ApiError =require('../../helpers/ApiError');
 const getComplaints = async (req, res, next) => {
   // logic for getting all complaints
   try{
