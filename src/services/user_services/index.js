@@ -45,7 +45,7 @@ const createUser = async(req, res, next) => {
         // Create a new user and save to DB 
         const newUser = await user.create({
             nic: nic,
-            fullname: f_n,
+            first_name: f_n,
             last_name: l_n,
             email: email,
             password: password,
@@ -56,9 +56,8 @@ const createUser = async(req, res, next) => {
 
 
         });
-        user.save();
+
         req.newUser = newUser;
-        console.log(req.body.nic);
         next();
     } catch (e) {
         console.log(e);
