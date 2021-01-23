@@ -31,7 +31,6 @@ const getUserById = async(req, res, next) => {
 const createUser = async(req, res, next) => {
     // sequalize logic goes here
 
-    console.log(req.body);
 
     try {
         const nic = req.body.nic,
@@ -53,8 +52,6 @@ const createUser = async(req, res, next) => {
             level: level,
             created_on: Date.now(),
             status: 0
-
-
         });
 
         req.newUser = newUser;

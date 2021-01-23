@@ -1,6 +1,7 @@
 const sequelize = require("../../helpers/sequelizer");
 const complaint = require("../../models/complaintModel");
 const ApiError = require('../../helpers/ApiError');
+
 const getComplaints = async(req, res, next) => {
     // logic for getting all complaints
     try {
@@ -10,9 +11,8 @@ const getComplaints = async(req, res, next) => {
     } catch (e) {
         next(ApiError.badrequest());
     }
-
-
 };
+
 const getComplaintById = async(req, res, next) => {
     // logic for getting a complaint by id
     try {
@@ -27,6 +27,7 @@ const getComplaintById = async(req, res, next) => {
         next(ApiError.badrequest());
     }
 };
+
 const createComplaint = async(req, res, next) => {
     // create new complaint
     try {
@@ -37,13 +38,13 @@ const createComplaint = async(req, res, next) => {
             add = req.body.address,
             file = req.body.file,
             comp = req.body.complaint,
-            people = req.user.id;
+            people = req.body.people_id;
 
         // Create a new complaint and save to DB 
         const newComplaint = await complaint.create({
             id: id,
             nic: nic,
-            fullname: f_n,
+            full_name: f_n,
             mobile: mob,
             address: add,
             complaint: comp,
@@ -58,6 +59,7 @@ const createComplaint = async(req, res, next) => {
         next(ApiError.badrequest());
     }
 };
+
 const updateComplaint = async(req, res, next) => {
     // update complaint logic
     try {

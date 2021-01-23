@@ -36,7 +36,7 @@ const complaint = sequelize.define(
     },
     people_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      default: null
     },
   },
   {

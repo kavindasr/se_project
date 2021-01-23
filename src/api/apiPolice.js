@@ -38,12 +38,7 @@ router.get("/user/:id", getUserById, (req, res, next) => {
 
 
 router.post("/user", createUser, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        console.log("ds");
-        res.json({ msg: "successfully registered" });
-    }
+    res.json({ msg: "successfully registered" });
 });
 
 router.get("/wanted", getWanteds, (req, res, next) => {
@@ -109,16 +104,11 @@ router.delete("/suspects/:id", deleteSuspect, (req, res, next) => {
 router.get("/complaints", getComplaints, (req, res, next) => {
     res.json({ Allcomplaints: req.complaints });
 });
+
 router.get("/complaints/:id", getComplaintById, (req, res, next) => {
     res.json({ complaintById: req.complaintId });
 });
-router.post("/complaints", createComplaint, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Added complaint" });
-    }
-});
+
 router.put("/complaints/:id", updateComplaint, (req, res, next) => {
     if (err) {
         return;
@@ -126,6 +116,7 @@ router.put("/complaints/:id", updateComplaint, (req, res, next) => {
         res.json({ msg: "Edited complaint" });
     }
 });
+
 router.delete("/complaints/:id", deleteComplaint, (req, res, next) => {
     if (err) {
         return;

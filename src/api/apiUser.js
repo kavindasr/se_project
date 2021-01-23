@@ -15,6 +15,7 @@ router.post("/", createComplaint, (req, res, next) => {
         res.json({ msg: "Created complaint" });
     }
 });
+
 router.put("/:id", updateComplaint, (req, res, next) => {
     if (err) {
         return;
