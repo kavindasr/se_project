@@ -1,7 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../helpers/sequelizer");
-const passportLocalSequelize=require("passport-local-sequelize");
-const bcrypt = require('bcrypt');
+const passportLocalSequelize = require("passport-local-sequelize");
+const bcrypt = require("bcrypt");
 const { Sequelize } = require("../helpers/sequelizer");
 
 const user = sequelize.define(
@@ -10,12 +10,12 @@ const user = sequelize.define(
     id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      autoIncrement:true,
+      autoIncrement: true,
       primaryKey: true,
     },
     nic: {
       type: DataTypes.STRING,
-      allowNull: false,  
+      allowNull: false,
     },
     first_name: {
       type: DataTypes.STRING,
@@ -50,16 +50,6 @@ const user = sequelize.define(
     timestamps: false,
   }
 );
-
-
-
-
-
-
-
-
-
-
 
 //user.sync({force:true}) // DANGEROUS!!! must remove at production
 module.exports = user;
