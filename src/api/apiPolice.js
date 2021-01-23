@@ -41,6 +41,7 @@ router.post("/user", createUser, (req, res, next) => {
     if (err) {
         return;
     } else {
+        console.log("ds");
         res.json({ msg: "successfully registered" });
     }
 });
