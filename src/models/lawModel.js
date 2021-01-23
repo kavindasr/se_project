@@ -8,6 +8,7 @@ const law = sequelize.define(
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
+      autoIncrement:true
     },
     law_number: {
       type: DataTypes.STRING,

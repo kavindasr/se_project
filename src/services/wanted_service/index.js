@@ -51,6 +51,7 @@ const createWanted = async(req, res, next) => {
         req.newWanted = newWanted;
         next();
     } catch (e) {
+        console.log(e);
         next(ApiError.badRequest());
     }
 };

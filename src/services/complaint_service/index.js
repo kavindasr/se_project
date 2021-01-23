@@ -16,12 +16,12 @@ const getComplaints = async(req, res, next) => {
 const getComplaintById = async(req, res, next) => {
     // logic for getting a complaint by id
     try {
-        const complaintId = await complaint.findAll({
+        const foundComplaint = await complaint.findAll({
             where: {
                 id: req.params.id
             }
         });
-        req.complaint = complaintId;
+        req.foundComplaint = foundComplaint;
         next();
     } catch (e) {
         next(ApiError.badrequest());
@@ -32,8 +32,7 @@ const createComplaint = async(req, res, next) => {
     // create new complaint
     console.log(req.body);
     try {
-        const id = req.body.id,
-            nic = req.body.nic,
+        const nic = req.body.nic,
             f_n = req.body.full_name,
             mob = req.body.mobile,
             add = req.body.address,
@@ -43,7 +42,6 @@ const createComplaint = async(req, res, next) => {
 
         // Create a new complaint and save to DB 
         const newComplaint = await complaint.create({
-            id: id,
             nic: nic,
             full_name: f_n,
             mobile: mob,
@@ -65,7 +63,7 @@ const updateComplaint = async(req, res, next) => {
     // update complaint logic
     console.log(req.body);
     try {
-        const updatedComplaint = await complaint.update({ nic: req.body.nic, full_name: req.body.full_name, mobile: req.body.mobile, address: req.body.address, complaint: req.body.compalint, file: req.body.file, status:req.body.staus }, {
+        const updatedComplaint = await complaint.update({ nic: req.body.nic, full_name: req.body.full_name, mobile: req.body.mobile, address: req.body.address, complaint: req.body.complaint, file: req.body.file, status:req.body.status }, {
             where: {
                 id: req.params.id
             }

@@ -22,7 +22,6 @@ const {
 const {
     getComplaints,
     getComplaintById,
-    createComplaint,
     updateComplaint,
     deleteComplaint,
 } = require("../services/complaint_service");
@@ -80,30 +79,20 @@ router.delete("/suspects/:id", deleteSuspect, (req, res, next) => {
 });
 // ========= suspects is ok ======= //
 
-
-
+// ========= complaints is ok ======= //
 router.get("/complaints", getComplaints, (req, res, next) => {
-    res.json({ Allcomplaints: req.complaints });
+    res.json({ complaints:req.complaints });
 });
-
 router.get("/complaints/:id", getComplaintById, (req, res, next) => {
-    res.json({ complaintById: req.complaintId });
+    res.json({ foundComplaint:req.foundComplaint });
 });
-
 router.put("/complaints/:id", updateComplaint, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Edited complaint" });
-    }
+    res.json({ msg: "edited complaint" });
 });
-
 router.delete("/complaints/:id", deleteComplaint, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Deleted wanted" });
-    }
+    res.json({ msg: "Deleted wanted" });
 });
+// ========= complaints is ok ======= //
+
 
 module.exports = router;
