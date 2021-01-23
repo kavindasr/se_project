@@ -21,7 +21,7 @@ const getComplaintById = async(req, res, next) => {
                 id: req.params.id
             }
         });
-        req.complaint = IcomplaintId;
+        req.complaint = complaintId;
         next();
     } catch (e) {
         next(ApiError.badrequest());
@@ -63,13 +63,13 @@ const createComplaint = async(req, res, next) => {
 
 const updateComplaint = async(req, res, next) => {
     // update complaint logic
+    console.log(req.body);
     try {
-        const updatedComplaint = await complaint.update({ nic: req.body.nic, fullname: req.body.full_name, mobile: req.body.mobile, address: req.body.address, complaint: req.body.compalint, file: req.body.file, status:req.body.staus }, {
+        const updatedComplaint = await complaint.update({ nic: req.body.nic, full_name: req.body.full_name, mobile: req.body.mobile, address: req.body.address, complaint: req.body.compalint, file: req.body.file, status:req.body.staus }, {
             where: {
                 id: req.params.id
             }
         });
-        req.updatedComplaints = updatedComplaints;
         next();
     } catch (e) {
         next(ApiError.badrequest())
