@@ -62,37 +62,25 @@ router.delete("/wanteds/:id", deleteWanted, (req, res, next) => {
 // ========= wanted is ok ======= //
 
 
-
+// ========= suspects is ok ======= //
 router.get("/suspects", getSuspects, (req, res, next) => {
-    suspects = req.suspects;
-    res.json({ suspects });
+    res.json({ suspects: req.suspects });
 });
-
 router.get("/suspects/:id", getSuspectById, (req, res, next) => {
-    res,
-    json({ suspectById: req.suspectId });
+    res.json({ foundSuspect: req.foundSuspect });
 });
 router.post("/suspects", createSuspect, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Added suspect" });
-    }
+    res.json({ msg: "Added suspect" });
 });
 router.put("/suspects/:id", updateSuspect, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Edited wanted" });
-    }
+    res.json({ msg: "Edited wanted" });
 });
 router.delete("/suspects/:id", deleteSuspect, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Deleted wanted" });
-    }
+    res.json({ msg: "Deleted wanted" });
 });
+// ========= suspects is ok ======= //
+
+
 
 router.get("/complaints", getComplaints, (req, res, next) => {
     res.json({ Allcomplaints: req.complaints });

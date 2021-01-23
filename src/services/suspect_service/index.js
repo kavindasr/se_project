@@ -21,7 +21,7 @@ const getSuspectById = async(req, res, next) => {
                 id: req.params.id
             }
         });
-        req.suspectId = suspectId;
+        req.foundSuspect = foundSuspect;
         next();
     } catch (e) {
         next(ApiError.badRequest());
@@ -36,7 +36,7 @@ const createSuspect = async(req, res, next) => {
             ln = req.body.last_name,
             desc = req.body.description,
             img = req.body.image,
-            police = req.user.id;
+            police = req.body.police_id;
 
         // Create a new complaint and save to DB
 
@@ -50,9 +50,8 @@ const createSuspect = async(req, res, next) => {
             status: 0
 
         });
-        req.newSusect = newSuspect;
+        req.newSuspect = newSuspect;
         next();
-
     } catch (e) {
         next(ApiError.badRequest());
     }
@@ -63,7 +62,7 @@ const updateSuspect = async(req, res, next) => {
 
     // sequalize logic here
     try {
-        const updatedSuspect = await suspect.update({ first_name: req.body.first_name, last_name: req.body.last_name, description: req.body.mobile, address: req.body.description, image: req.body.image }, {
+        const updatedSuspect = await suspect.update({ first_name: req.body.first_name, last_name: req.body.last_name, description: req.body.mobile, address: req.body.description, image: req.body.image, police_id:req.body.police_id, status: req.body.status }, {
             where: {
                 id: req.params.id
             }
@@ -79,7 +78,7 @@ const updateSuspect = async(req, res, next) => {
 const deleteSuspect = async(req, res, next) => {
     // sequalize logic here
     try {
-        await law.destroy({
+        await suspect.destroy({
             where: {
                 id: req.params.id
             }
