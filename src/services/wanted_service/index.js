@@ -18,32 +18,29 @@ const getWanteds = async(req, res, next) => {
 const getWantedById = async(req, res, next) => {
     //  sequalize logic 
     try {
-        const wantedId = await wanted.findAll({
+        const foundWanted = await wanted.findAll({
             where: {
                 id: req.params.id
             }
         });
-        req.wantedId = wantedId;
+        req.foundWanted = foundWanted;
         next();
     } catch (e) {
         next(ApiError.badRequest());
     }
 };
 
-
 const createWanted = async(req, res, next) => {
     //  sequalize logic here
     try {
-        const id = req.body.id,
-            f_n = req.body.first_name,
+        const f_n = req.body.first_name,
             l_n = req.body.last_name,
             desc = req.body.description,
             img = req.body.image,
-            police = req.user.id;
+            police = req.body.police_id;
 
         // Create a new wanted and save to DB 
         const newWanted = await wanted.create({
-            id: id,
             first_name: f_n,
             last_name: l_n,
             description: desc,
@@ -62,7 +59,7 @@ const createWanted = async(req, res, next) => {
 const updateWanted = async(req, res, next) => {
     //  sequalize logic here
     try {
-        const updatedWanted = await wanted.update({ first_name: req.body.first_name, last_name: req.body.last_name, description: req.body.description, image: req.body.image }, {
+        const updatedWanted = await wanted.update({ first_name: req.body.first_name, last_name: req.body.last_name, description: req.body.description, image: req.body.image, police_id:req.body.police_id, status:req.body.status }, {
             where: {
                 id: req.params.id
             }

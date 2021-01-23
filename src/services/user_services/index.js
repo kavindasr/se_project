@@ -11,8 +11,9 @@ const getUsers = async(req, res, next) => {
     } catch (e) {
         next(ApiError.badRequest());
     }
-
 };
+
+
 const getUserById = async(req, res, next) => {
     // sequalize logic goes here
     try {
@@ -28,6 +29,8 @@ const getUserById = async(req, res, next) => {
     }
 
 };
+
+
 const createUser = async(req, res, next) => {
     // sequalize logic goes here
 
@@ -60,7 +63,6 @@ const createUser = async(req, res, next) => {
         console.log(e);
         next(ApiError.badRequest());
     }
-
 };
 
 module.exports = { getUsers, getUserById, createUser };

@@ -27,48 +27,41 @@ const {
     deleteComplaint,
 } = require("../services/complaint_service");
 
-router.get("/user", getUsers, (req, res, next) => {
-    users = req.users;
-    res.json({ users });
-});
-router.get("/user/:id", getUserById, (req, res, next) => {
-    res.json({ usersByID: req.userId });
-});
 
-
-
+// ========= user is ok ======= //
 router.post("/user", createUser, (req, res, next) => {
     res.json({ msg: "successfully registered" });
 });
 
-router.get("/wanted", getWanteds, (req, res, next) => {
-    res.json({ Allwanteds: req.wanteds });
+router.get("/user", getUsers, (req, res, next) => {
+    res.json({ users: req.users });
 });
-router.get("/wanted/:id", getWantedById, (req, res, next) => {
-    res.json({ wantedBYId: req.wantedId });
-});
-router.post("/wanted", createWanted, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Added wanted" });
-    }
-});
-router.put("/wanted/:id", updateWanted, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Edited wanted" });
-    }
 
+router.get("/user/:id", getUserById, (req, res, next) => {
+    res.json({ foundUser: req.userId });
 });
-router.delete("/wanted/:id", deleteWanted, (req, res, next) => {
-    if (err) {
-        return;
-    } else {
-        res.json({ msg: "Deleted wanted" });
-    }
+// ========= user is ok ======= //
+
+
+// ========= wanted is ok ======= //
+router.get("/wanteds", getWanteds, (req, res, next) => {
+    res.json({ wanteds: req.wanteds });
 });
+router.get("/wanteds/:id", getWantedById, (req, res, next) => {
+    res.json({ foundWanted: req.foundWanted });
+});
+router.post("/wanteds", createWanted, (req, res, next) => {
+    res.json({ msg: "Added wanted" });
+});
+router.put("/wanteds/:id", updateWanted, (req, res, next) => {
+    res.json({ msg: "Edited wanted" });
+});
+router.delete("/wanteds/:id", deleteWanted, (req, res, next) => {
+    res.json({ msg: "Deleted wanted" });
+});
+// ========= wanted is ok ======= //
+
+
 
 router.get("/suspects", getSuspects, (req, res, next) => {
     suspects = req.suspects;
